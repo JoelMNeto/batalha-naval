@@ -25,9 +25,10 @@ O jogo começa explicando as regras e pedindo o nome de cada jogador. Depois, o 
 <br>
 
 <div align="center">
-  <img src="assets/batalhaNavalNavio" alt="Página de personagens" width="686">
+  <img src="assets/batalhaNavalNavio.png" alt="Posicionando navio" width="686">
 </div>
 
+<br>
 <br>
 
 Com o navio do primeiro jogador posicionado, é a vez do jogador 2 tentar destruir o navio do seu adversário.
@@ -35,7 +36,7 @@ Com o navio do primeiro jogador posicionado, é a vez do jogador 2 tentar destru
 <br>
 
 <div align="center">
-  <img src="assets/batalhaNavalBomba" alt="Página de personagens" width="686">
+  <img src="assets/batalhaNavalBomba.png" alt="Tentando destruir o navio" width="686">
 </div>
 
 <br>
