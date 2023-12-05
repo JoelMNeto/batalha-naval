@@ -1,16 +1,15 @@
-// Joel MarÃ§ola Neto e JoÃ£o Pedro da Silva Vieira
+// Joel Marçola Neto e João Pedro da Silva Vieira
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
+#include <locale.h>
 
-void importarBibliotecaSO() {
-    #ifdef _WIN64
-        #include <windows.h>
-    #elif __linux
-        #include <unistd.h>
-    #endif
-}
+#ifdef _WIN64
+    #include <windows.h>
+#elif __linux
+    #include <unistd.h>
+#endif
 
 void limparTela();
 void mostrarTitulo();
@@ -29,6 +28,8 @@ int  inserirCasa(char matriz[][8], char jogada, int posicao[], int linhas, int c
 int  inserirJogada(char matriz[][8], char matrizGabarito[][8], int linhas, int colunas);
 
 int main(){ 
+    setlocale(LC_ALL, "Portuguese_Brazil");
+
     char nomeJogador1[20], nomeJogador2[20], 
         matrizGabarito[8][8], matrizJogo[8][8], resposta = 'N';
 
@@ -48,7 +49,7 @@ int main(){
         nomeJogador1[0] = toupper(nomeJogador1[0]);
         nomeJogador2[0] = toupper(nomeJogador2[0]);
 
-        printf("\n\tVamos comeÃ§ar!!\n");
+        printf("\n\tVamos começar!!\n");
 
         do {
             mostrarTitulo();
@@ -62,17 +63,17 @@ int main(){
 
             inicializarMatriz(matrizGabarito, 8, 8);
 
-            printf("\n\t%s, posicione seu navio [trÃªs casas]\n", nomeJogador1);
+            printf("\n\t%s, posicione seu navio [três casas]\n", nomeJogador1);
 
-            printf("\n\tATENÃ‡ÃƒO! Garanta que o outro jogador nÃ£o estÃ¡ vendo a sua tela.\n");
+            printf("\n\tATENÇÃO! Garanta que o outro jogador não está vendo a sua tela.\n");
 
             posicionarNavio(matrizGabarito, 8, 8);
 
             mostrarTitulo();
 
-            printf("\n\t%s, Sua vez de jogar, vocÃª tem direito a 5 tiros para tentar acertar o navio.\n", nomeJogador2);
+            printf("\n\t%s, Sua vez de jogar, você tem direito a 5 tiros para tentar acertar o navio.\n", nomeJogador2);
 
-            printf("\n\tA cada tiro certo vocÃª ganha mais um tiro extra.\n");
+            printf("\n\tA cada tiro certo você ganha mais um tiro extra.\n");
 
             printf("\n\tBoa sorte!\n");
 
@@ -137,12 +138,12 @@ void posicionarNavio(char matriz[][8], int linhas, int colunas) {
         k = i + 1;
         jogadaValida = 0;
 
-        printf("\n\tInforme a casa [linha (espaÃ§o) coluna] do navio.\n");
+        printf("\n\tInforme a casa [linha (espaço) coluna] do navio.\n");
 
         mostrarMatriz(matriz, linhas, colunas);
 
         while(!jogadaValida) {
-            printf("\n\t%dÂª casa: ", k);
+            printf("\n\t%dª casa: ", k);
             scanf("%d %d", &navio[0], &navio[1]);
 
             getchar();
@@ -174,7 +175,7 @@ int inserirJogada(char matriz[][8], char matrizGabarito[][8], int linhas, int co
         mostrarMatriz(matriz, 8, 8);
 
         while (!jogadaValidaEtiroCerto[0]) {
-            printf("\n\t%dÂº tiro [linha, coluna]: ", cont);
+            printf("\n\t%dº tiro [linha, coluna]: ", cont);
             scanf("%d %d", &tiro[0], &tiro[1]);
 
             getchar();
@@ -191,7 +192,7 @@ int inserirJogada(char matriz[][8], char matrizGabarito[][8], int linhas, int co
 
                 mostrarMatriz(matriz, 8, 8);
 
-                printf("\n\tNavio destruÃ­do.\n");
+                printf("\n\tNavio destruído.\n");
 
                 return 1;
             }
@@ -235,13 +236,13 @@ int inserirJogada(char matriz[][8], char matrizGabarito[][8], int linhas, int co
 
 int inserirCasa(char matriz[][8], char jogada, int posicao[], int linhas, int colunas) {
     if(posicao[1] < 0 || posicao[1] > colunas || posicao[0] < 0 || posicao[0] > linhas) {
-        printf("\n\tPosiÃ§Ã£o invÃ¡lida!\n");
+        printf("\n\tPosição inválida!\n");
 
         return 0;
     }
 
     if(matriz[posicao[0]][posicao[1]] != '~') {
-        printf("\n\tCasa jÃ¡ ocupada!\n");
+        printf("\n\tCasa já ocupada!\n");
 
         return 0;
     }
@@ -296,21 +297,21 @@ int inserirNavio(char matriz[][8], int posicao[], int linhas, int colunas){
     }
 
     if((navio[0] != posicao[0]) && (navio[1] != posicao[1])) {
-        printf("\n\tA terceira casa deve ser adjascente Ã s outras duas!");
+        printf("\n\tA terceira casa deve ser adjascente às outras duas!");
 
         return 0;
     }
 
     if((navio[0] == posicao[0]) && ((navio[3] + 1) != posicao[1]) &&
         ((navio[1] - 1) != posicao[1]) ) {
-        printf("\n\tA terceira casa deve ser adjascente Ã s outras duas!");
+        printf("\n\tA terceira casa deve ser adjascente às outras duas!");
 
         return 0;
     }
 
     if((navio[1] == posicao[1]) && ((navio[2] + 1) != posicao[0]) &&
         ((navio[0] - 1) != posicao[0])) {
-        printf("\n\tA terceira casa deve ser adjascente Ã s outras duas!");
+        printf("\n\tA terceira casa deve ser adjascente às outras duas!");
 
         return 0;
     }
@@ -347,9 +348,9 @@ void mostrarPlacar(char jogador1[], char jogador2[], int pontos[]) {
 
 void mostrarRegras() {
     printf("\n\tREGRAS: \n");
-    printf("\n\t* O jogador que atirar ganha um ponto se o navio for destruÃ­do por completo;\n");
-    printf("\n\t* Mas se o navio nÃ£o for destruÃ­do, o ponto vai para o jogador qur posicionou o navio;\n");
-    printf("\n\t* O jogador que fizer trÃªs pontos primeiro ganha o jogo;\n");
+    printf("\n\t* O jogador que atirar ganha um ponto se o navio for destruído por completo;\n");
+    printf("\n\t* Mas se o navio não for destruído, o ponto vai para o jogador qur posicionou o navio;\n");
+    printf("\n\t* O jogador que fizer três pontos primeiro ganha o jogo;\n");
     printf("\t---------------------------------------------------------------------------------------\n\n");
 }
 
@@ -391,7 +392,7 @@ int verificaVencedor(char jogador1[], char jogador2[], int pontos[]) {
         mostrarTitulo();
         mostrarPlacar(jogador1, jogador2, pontos);
 
-        printf("\n\tParabÃ©ns %s, vocÃª venceu!\n", jogador1);
+        printf("\n\tParabéns %s, você venceu!\n", jogador1);
 
         return 1;
     } 
@@ -400,7 +401,7 @@ int verificaVencedor(char jogador1[], char jogador2[], int pontos[]) {
         mostrarTitulo();
         mostrarPlacar(jogador1, jogador2, pontos);
 
-        printf("\n\tParabÃ©ns %s, vocÃª venceu!\n", jogador2);
+        printf("\n\tParabéns %s, você venceu!\n", jogador2);
 
         return 1;
     } 
